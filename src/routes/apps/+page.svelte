@@ -1,12 +1,28 @@
-<h1>My Apps</h1>
-<p>Here you’ll find all the apps I’ve built and released.</p>
+<script>
+import Carousel from "$lib/Carousel.svelte";
+import bgImageOne from '$lib/images/acc_one.png';
+import bgImage from '$lib/images/circuit.png';
+import icon from '$lib/images/icon.png';
 
-<style>
-	h1 {
-		color: #fff;
-		margin-bottom: 0.5rem;
-	}
-	p {
-		color: #9ca3af;
-	}
-</style>
+
+  const slides = [
+    {
+      image: bgImageOne,
+      title: "Accretion Simulation",
+      description: "Watch planets form dynamically from swirling debris."
+    },
+    {
+      image: bgImage,
+      title: "Orbital Mechanics",
+      description: "Realistic gravity interactions and orbital paths."
+    },
+    {
+      image: icon,
+      title: "Custom Scenarios",
+      description: "Build your own solar systems and test physics."
+    }
+  ];
+</script>
+
+<Carousel items={slides} interval={4000} />
+

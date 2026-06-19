@@ -1,4 +1,5 @@
 <script>
+
 	export let data;
 </script>
 
@@ -26,6 +27,7 @@
 		font-family: 'Inter', sans-serif;
 		background: #0d0f12; /* Deep charcoal background */
 		color: #d1d5db; /* Light gray body text */
+	
 	}
 
 	.page {
@@ -85,7 +87,7 @@
 	/* --- MAIN & FOOTER --- */
 	main {
 		flex: 1;
-		padding: 2rem;
+		/* padding: 2rem; */
 	}
 
 	/* Example test card styling using your theme */

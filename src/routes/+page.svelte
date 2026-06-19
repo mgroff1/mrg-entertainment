@@ -1,113 +1,180 @@
+<script>
+import bgImageOne from '$lib/images/acc_one.png';
+import bgImage from '$lib/images/circuit.png';
+import icon from '$lib/images/icon.png';
+</script>
+
 <section class="hero">
-	<h1>Apps with Purpose.</h1>
-	<p>Clean, intuitive mobile experiences crafted with passion.</p>
-	<a href="/apps" class="cta">Explore My Apps</a>
+  <h1>Apps with Purpose.</h1>
+  <p>Clean, intuitive mobile experiences crafted with passion.</p>
+
+  <a href="/apps" class="cta">Explore My Apps</a>
 </section>
 
 <section class="apps">
-	<h2>Featured Apps</h2>
+  <div class="card">
+    <div class="card-content">
+      <div class="icon-placeholder"></div>
 
-	<div class="grid">
-		<div class="card">
-			<div class="icon-placeholder"></div>
-			<h3>App Name</h3>
-			<p>Short description of what the app does.</p>
-			<div class="buttons">
-				<a class="btn" href="#">Google Play</a>
-				<a class="btn secondary" href="#">Learn More</a>
-			</div>
-		</div>
-	</div>
+      <h2>Accretion: Planetary Sandbox</h2>
+
+      <p>
+        A physics‑driven planetary simulation where you create, collide, sculpt, and evolve entire
+        solar systems. Build worlds, experiment with gravity, and watch your universe take shape.
+      </p>
+
+      <div class="buttons">
+        <a
+          class="btn"
+          href="https://play.google.com/store/apps/details?id=com.mrg.planetary_sandbox"
+          target="_blank"
+          rel="noopener"
+        >
+          Google Play
+        </a>
+
+        <a class="btn secondary" href="#">
+          Learn More
+        </a>
+      </div>
+    </div>
+
+    <div class="card-image">
+      <!-- Replace with your screenshot -->
+      <img class="image"src={bgImageOne} alt="Accretion Screenshot" />
+    </div>
+  </div>
 </section>
 
 <style>
-	.hero {
-		text-align: center;
-		padding: 6rem 1rem;
-	}
+  /* === YOUR EXACT COLOR SCHEME (kept intact) === */
 
-	.hero h1 {
-		font-size: 3rem;
-		color: #fff;
-		margin-bottom: 0.5rem;
-	}
+  .hero {
+    text-align: center;
+    padding: 1rem 1rem;
+  }
 
-	.hero p {
-		color: #9ca3af;
-		margin-bottom: 2rem;
-	}
+  .hero h1 {
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
 
-	.cta {
-		padding: 0.8rem 1.6rem;
-		background: #3b82f6;
-		color: white;
-		border-radius: 6px;
-		text-decoration: none;
-		transition: 0.2s;
-	}
+  .hero p {
+    color: #9ca3af;
+    margin-bottom: 2rem;
+  }
 
-	.cta:hover {
-		background: #60a5fa;
-	}
+  .cta {
+    padding: 0.8rem 1.6rem;
+    background: #3b82f6;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.2s;
+  }
 
-	.apps {
-		margin-top: 4rem;
-	}
+  .cta:hover {
+    background: #60a5fa;
+  }
 
-	.apps h2 {
-		text-align: center;
-		margin-bottom: 2rem;
-		color: #fff;
-	}
+  /* === FEATURED APP SECTION === */
 
-	.grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-		gap: 2rem;
-	}
+  .apps {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+  }
 
-	.card {
-		background: #1a1d22;
-		padding: 1.5rem;
-		border-radius: 10px;
-		border: 1px solid #22262c;
-		transition: 0.2s;
-	}
+  .card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    background: #1a1d22;
+    padding: 1.2rem;
+    border-radius: 10px;
+    border: 1px solid #22262c;
+    transition: 0.2s;
+    /* max-width: 100vh; */
+    width: 100%;
+  }
 
-	.card:hover {
-		transform: translateY(-4px);
-		border-color: #3b82f6;
-	}
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: #3b82f6;
+  }
 
-	.icon-placeholder {
-		width: 64px;
-		height: 64px;
-		background: #22262c;
-		border-radius: 12px;
-		margin-bottom: 1rem;
-	}
+  .card-content {
+    flex: 1 1 320px;
+    min-width: 260px;
+  }
 
-	.buttons {
-		margin-top: 1rem;
-		display: flex;
-		gap: 0.5rem;
-	}
+  .card-content h2 {
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
 
-	.btn {
-		padding: 0.5rem 1rem;
-		background: #3b82f6;
-		color: white;
-		border-radius: 6px;
-		text-decoration: none;
-		font-size: 0.9rem;
-	}
+  .card-content p {
+    color: #9ca3af;
+    line-height: 1.6;
+  }
 
-	.btn.secondary {
-		background: #22262c;
-		color: #d1d5db;
-	}
+  .icon-placeholder {
+    width: 64px;
+    height: 64px;
+    background: #22262c;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
 
-	.btn:hover {
-		opacity: 0.9;
-	}
+  .buttons {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    background: #3b82f6;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .btn.secondary {
+    background: #22262c;
+    color: #d1d5db;
+  }
+
+  .btn:hover {
+    opacity: 0.9;
+  }
+
+  /* .card-image {
+    flex: 1 1 100vh;
+   min-width: 520px;
+    min-height: 420px;
+    background: #0f1115;
+    border-radius: 10px;
+    border: 1px solid #22262c;
+    background-size: cover;
+    background-position: center;
+	padding:1rem;
+  } */
+
+  .image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 10px;
+  }
+
+  /* @media (max-width: 600px) {
+    .card-image {
+      min-width: 80%;
+      min-height: 300px;
+    }
+  } */
 </style>
+
