@@ -1,20 +1,38 @@
 <script>
-import Carousel from "$lib/Carousel.svelte";
-import bgImageOne from '$lib/images/acc_one.png';
-import bgImage from '$lib/images/circuit.png';
-import icon from '$lib/images/icon.png';
-
+  import Carousel from '$lib/Carousel.svelte';
+  
+  import bgImageOne from '$lib/images/acc_one.png';
+  import celestial_realm from '$lib/images/cr.png';
+  import cipher from '$lib/images/cipher.png';
+  import icon from '$lib/images/icon.png';
+  import dreamIt from '$lib/images/dreamit.png';
+  import roommateRep from '$lib/images/rr.png';
 
   const slides = [
     {
       image: bgImageOne,
-      title: "Accretion Simulation",
-      description: "Watch planets form dynamically from swirling debris."
+      title: "Accretion: Planetary Sandbox",
+      description: "A physics‑driven space sandbox where you build solar systems, collide planets, tweak gravity, and watch worlds form in real time. Accretion turns astrophysics into a creative playground."
     },
     {
-      image: bgImage,
-      title: "Orbital Mechanics",
-      description: "Realistic gravity interactions and orbital paths."
+      image: celestial_realm,
+      title: "Celestial Realm: A Tarot Guide",
+      description: "A serene, cosmic‑themed tarot reference that helps you learn, explore, and understand every card with clarity and ease."
+    },
+    {
+      image: cipher,
+      title: "Cipher: A Guide, A Reading, A Dream",
+      description: "A mystical all‑in‑one tool offering tarot readings, daily guidance, and dream interpretation in a beautifully intuitive experience."
+    },
+    {
+      image: roommateRep,
+      title: "Roommate Rep: A Roommate Reputation Tracker",
+      description: "A simple, trustworthy way to build a rental reputation, verify yourself, and show landlords or roommates a clean, credible profile."
+    },
+    {
+      image: dreamIt,
+      title: "Dream It: A Dream Journal and Interpretation App",
+      description: "A modern dream journal that tracks symbols, emotions, themes, and patterns, helping you understand your subconscious over time."
     },
     {
       image: icon,
@@ -24,5 +42,19 @@ import icon from '$lib/images/icon.png';
   ];
 </script>
 
-<Carousel items={slides} interval={4000} />
+<div class="carousel-container">
+  <Carousel items={slides} />
+</div>
 
+<style>
+  .carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* Replaced min-height with height so the Carousel's height: 100% rule works properly */
+    height: 80vh; 
+    padding: 20px;
+    box-sizing: border-box;
+  }
+</style>

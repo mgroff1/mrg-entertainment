@@ -14,7 +14,7 @@
 		"@fontsource/fira-mono": "^5.0.12",
 		"@neoconfetti/svelte": "^2.2.1",
 		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/kit": "next",
+		"@sveltejs/kit": "^2.66.0",
 		"@types/cookie": "^0.6.0",
 		"@typescript-eslint/eslint-plugin": "^7.3.1",
 		"@typescript-eslint/parser": "^7.3.1",
@@ -23,12 +23,15 @@
 		"eslint-plugin-svelte3": "^4.0.0",
 		"prettier": "^3.2.5",
 		"prettier-plugin-svelte": "^3.2.2",
-		"svelte": "^4.2.12",
+		"svelte": "^5.56.3",
 		"svelte-check": "^3.6.8",
 		"svelte-preprocess": "^5.1.0",
 		"tslib": "^2.6.2",
 		"typescript": "^5.4.3",
-		"vite": "^5.2.6"
+		"vite": "^8.0.16"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@sveltejs/vite-plugin-svelte": "^7.1.2"
+	}
 }
