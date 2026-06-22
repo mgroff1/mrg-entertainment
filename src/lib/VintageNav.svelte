@@ -41,6 +41,14 @@
 
 <header class="vintage-header">
 	<div class="nav-container">
+		<!-- Brand Logo/Text -->
+		<div class="logo-wrapper">
+			<a href={`${base}/`} onclick={(e) => navigate(e, '/')} class="logo-text">
+				<span class="full-text">MRG Entertainment</span>
+				<span class="short-text">MRG</span>
+			</a>
+		</div>
+
 		<!-- DESKTOP ONLY: Left List -->
 		<div class="list-wrapper list-left desktop-only">
 			{#if isOpen}
@@ -140,6 +148,54 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 0 20px;
+	}
+
+	/* Logo Brand Styles */
+	.logo-wrapper {
+		position: absolute;
+		left: 20px;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		z-index: 105;
+	}
+
+	.logo-text {
+		font-size: 1.1rem;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		color: #e5e7eb;
+		text-decoration: none;
+		transition: color 0.3s, transform 0.2s;
+	}
+
+	.logo-text:hover {
+		color: #3b82f6;
+		transform: scale(1.02);
+	}
+
+	.logo-text .short-text {
+		display: inline;
+	}
+
+	.logo-text .full-text {
+		display: none;
+	}
+
+	@media (min-width: 600px) {
+		.logo-text .short-text {
+			display: none;
+		}
+		.logo-text .full-text {
+			display: inline;
+		}
+	}
+
+	@media (max-width: 380px) {
+		.logo-wrapper {
+			display: none;
+		}
 	}
 
 	/* Center Button (The Pie) */
