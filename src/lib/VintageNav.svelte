@@ -34,7 +34,7 @@
 		{ name: 'Apps', path: '/apps' },
 		{ name: 'About', path: '/about' },
 		{ name: 'Contact', path: '/contacts' },
-		{ name: 'GitHub', path: 'https://github.com/' },
+		{ name: 'LightBright', path: '/lightbright' },
 		{ name: 'Fluid', path: '/water' }
 	];
 </script>
