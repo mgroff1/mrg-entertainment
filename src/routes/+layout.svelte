@@ -1,9 +1,10 @@
 <script>
 	import Nav from '$lib/Nav.svelte';
+	import VintageNav from '$lib/VintageNav.svelte';
 </script>
 
 <div class="app-layout">
-	<Nav />
+	<VintageNav />
 
 	<!-- The main content area flexes to fill the space between Nav and Footer -->
 	<main class="content">

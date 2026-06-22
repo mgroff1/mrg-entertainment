@@ -62,7 +62,7 @@
         <div class="success-icon">✓</div>
         <h2>Message Sent!</h2>
         <p>Thanks for reaching out. I'll get back to you soon.</p>
-        <button class="close-btn" on:click={() => showSuccess = false}>Close</button>
+        <button class="close-btn" onclick={() => showSuccess = false}>Close</button>
       </div>
     </div>
   {/if}
@@ -73,7 +73,7 @@
     <div class="shell-a form-section">
       <h1>Contact Me</h1>
       <!-- Added the custom on:submit handler here -->
-      <form class="contact-form" action="https://formspree.io/f/mzbdwoob" method="POST" on:submit={handleSubmit}>
+      <form class="contact-form" action="https://formspree.io/f/mzbdwoob" method="POST" onsubmit={handleSubmit}>
         <div class="input-group">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" placeholder="John Doe" required disabled={isSubmitting} />

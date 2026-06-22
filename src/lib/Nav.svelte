@@ -12,19 +12,19 @@
 
 <nav class="nav">
   <div class="logo">
-    <a href="/" on:click|preventDefault={() => navigate('/')}>MRGEntertainment</a>
+    <a href="/" onclick={(e) => { e.preventDefault(); navigate('/'); }}>MRGEntertainment</a>
   </div>
 
   <!-- Desktop menu -->
   <div class="links desktop">
-    <a href="/" on:click|preventDefault={() => navigate('/')}>Home</a>
-    <a href="/apps" on:click|preventDefault={() => navigate('/apps')}>Apps</a>
-    <a href="/about" on:click|preventDefault={() => navigate('/about')}>About</a>
-    <a href="/contacts" on:click|preventDefault={() => navigate('/contacts')}>Contact</a>
+    <a href="/" onclick={(e) => { e.preventDefault(); navigate('/'); }}>Home</a>
+    <a href="/apps" onclick={(e) => { e.preventDefault(); navigate('/apps'); }}>Apps</a>
+    <a href="/about" onclick={(e) => { e.preventDefault(); navigate('/about'); }}>About</a>
+    <a href="/contacts" onclick={(e) => { e.preventDefault(); navigate('/contacts'); }}>Contact</a>
   </div>
 
   <!-- Hamburger Fixed: 3 lines instead of 4 to match CSS animation -->
-  <button class="hamburger" on:click={() => (open = !open)} aria-label="Toggle Menu">
+  <button class="hamburger" onclick={() => (open = !open)} aria-label="Toggle Menu">
     <div class:open={open}></div>
     <div class:open={open}></div>
     <div class:open={open}></div>
@@ -33,10 +33,10 @@
   <!-- Mobile dropdown -->
   {#if open}
     <div class="dropdown mobile" transition:fly={{ y: -10, duration: 200 }}>
-      <a href="/" on:click|preventDefault={() => navigate('/')}>Home</a>
-      <a href="/apps" on:click|preventDefault={() => navigate('/apps')}>Apps</a>
-      <a href="/about" on:click|preventDefault={() => navigate('/about')}>About</a>
-      <a href="/contact" on:click|preventDefault={() => navigate('/contact')}>Contact</a>
+      <a href="/" onclick={(e) => { e.preventDefault(); navigate('/'); }}>Home</a>
+      <a href="/apps" onclick={(e) => { e.preventDefault(); navigate('/apps'); }}>Apps</a>
+      <a href="/about" onclick={(e) => { e.preventDefault(); navigate('/about'); }}>About</a>
+      <a href="/contact" onclick={(e) => { e.preventDefault(); navigate('/contact'); }}>Contact</a>
     </div>
   {/if}
 </nav>
