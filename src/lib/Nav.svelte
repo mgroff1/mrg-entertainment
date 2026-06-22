@@ -1,26 +1,27 @@
 <script>
   import { goto } from '$app/navigation';
   import { fly } from 'svelte/transition';
+  import { base } from '$app/paths';
 
   let open = false;
 
   function navigate(path) {
     open = false;
-    goto(path);
+    goto(`${base}${path}`);
   }
 </script>
 
 <nav class="nav">
   <div class="logo">
-    <a href="/" onclick={(e) => { e.preventDefault(); navigate('/'); }}>MRGEntertainment</a>
+    <a href={`${base}/`} onclick={(e) => { e.preventDefault(); navigate('/'); }}>MRGEntertainment</a>
   </div>
 
   <!-- Desktop menu -->
   <div class="links desktop">
-    <a href="/" onclick={(e) => { e.preventDefault(); navigate('/'); }}>Home</a>
-    <a href="/apps" onclick={(e) => { e.preventDefault(); navigate('/apps'); }}>Apps</a>
-    <a href="/about" onclick={(e) => { e.preventDefault(); navigate('/about'); }}>About</a>
-    <a href="/contacts" onclick={(e) => { e.preventDefault(); navigate('/contacts'); }}>Contact</a>
+    <a href={`${base}/`} onclick={(e) => { e.preventDefault(); navigate('/'); }}>Home</a>
+    <a href={`${base}/apps`} onclick={(e) => { e.preventDefault(); navigate('/apps'); }}>Apps</a>
+    <a href={`${base}/about`} onclick={(e) => { e.preventDefault(); navigate('/about'); }}>About</a>
+    <a href={`${base}/contacts`} onclick={(e) => { e.preventDefault(); navigate('/contacts'); }}>Contact</a>
   </div>
 
   <!-- Hamburger Fixed: 3 lines instead of 4 to match CSS animation -->
@@ -33,10 +34,10 @@
   <!-- Mobile dropdown -->
   {#if open}
     <div class="dropdown mobile" transition:fly={{ y: -10, duration: 200 }}>
-      <a href="/" onclick={(e) => { e.preventDefault(); navigate('/'); }}>Home</a>
-      <a href="/apps" onclick={(e) => { e.preventDefault(); navigate('/apps'); }}>Apps</a>
-      <a href="/about" onclick={(e) => { e.preventDefault(); navigate('/about'); }}>About</a>
-      <a href="/contact" onclick={(e) => { e.preventDefault(); navigate('/contact'); }}>Contact</a>
+      <a href={`${base}/`} onclick={(e) => { e.preventDefault(); navigate('/'); }}>Home</a>
+      <a href={`${base}/apps`} onclick={(e) => { e.preventDefault(); navigate('/apps'); }}>Apps</a>
+      <a href={`${base}/about`} onclick={(e) => { e.preventDefault(); navigate('/about'); }}>About</a>
+      <a href={`${base}/contact`} onclick={(e) => { e.preventDefault(); navigate('/contact'); }}>Contact</a>
     </div>
   {/if}
 </nav>

@@ -1,6 +1,7 @@
 <script>
 	import { slide } from 'svelte/transition';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 
 	// Svelte 5 state for the menu toggle
 	let isOpen = $state(false);
@@ -12,7 +13,7 @@
 	function navigate(e, path) {
 		e.preventDefault();
 		isOpen = false; // Close menu when navigating
-		goto(path);
+		goto(`${base}${path}`);
 	}
 
 	// Splitting your links into the left and right lists
@@ -51,7 +52,7 @@
 									>{link.name}</a
 								>
 							{:else}
-								<a href={link.path} onclick={(e) => navigate(e, link.path)}>{link.name}</a>
+								<a href={`${base}${link.path}`} onclick={(e) => navigate(e, link.path)}>{link.name}</a>
 							{/if}
 						</li>
 					{/each}
@@ -89,7 +90,7 @@
 									>{link.name}</a
 								>
 							{:else}
-								<a href={link.path} onclick={(e) => navigate(e, link.path)}>{link.name}</a>
+								<a href={`${base}${link.path}`} onclick={(e) => navigate(e, link.path)}>{link.name}</a>
 							{/if}
 						</li>
 					{/each}
@@ -108,7 +109,7 @@
 									>{link.name}</a
 								>
 							{:else}
-								<a href={link.path} onclick={(e) => navigate(e, link.path)}>{link.name}</a>
+								<a href={`${base}${link.path}`} onclick={(e) => navigate(e, link.path)}>{link.name}</a>
 							{/if}
 						</li>
 					{/each}

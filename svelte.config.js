@@ -13,7 +13,7 @@ const config = {
 			strict: true
 		}),
 		paths: {
-			relative: true
+			base: process.env.NODE_ENV === 'production' ? '/mrg-entertainment' : ''
 		}
 	}
 };

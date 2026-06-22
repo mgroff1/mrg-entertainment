@@ -1,5 +1,6 @@
 <script>
 	import { useBodyClass } from '$lib/useBodyClass.ts';
+	import { base } from '$app/paths';
 </script>
 
 <section class="page">
@@ -82,7 +83,7 @@
 					</ul>
 
 					<div class="cta-row">
-						<a href="/contacts" class="btn primary">Start a project ↗</a>
+						<a href={`${base}/contacts`} class="btn primary">Start a project ↗</a>
 					</div>
 				</div>
 

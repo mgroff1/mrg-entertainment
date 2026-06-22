@@ -1,5 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 </script>
 
 <div class="home-container">
@@ -11,7 +12,7 @@
 				sandboxes.
 			</p>
 
-			<button class="cta" onclick={() => goto('/apps')}> Explore My Apps </button>
+			<button class="cta" onclick={() => goto(`${base}/apps`)}> Explore My Apps </button>
 		</div>
 	</section>
 
@@ -43,7 +44,7 @@
 			</div>
 		</div>
 
-		<button class="cta secondary" onclick={() => goto('/apps')}> Explore My Apps </button>
+		<button class="cta secondary" onclick={() => goto(`${base}/apps`)}> Explore My Apps </button>
 	</section>
 
 	<section class="about-preview">
@@ -54,7 +55,7 @@
 			practical tool like RoommateRep, I design with clarity, intention, and a modern aesthetic.
 		</p>
 
-		<a href="/about" class="link">Learn more</a>
+		<a href={`${base}/about`} class="link">Learn more</a>
 	</section>
 
 	<section class="blog-preview">
