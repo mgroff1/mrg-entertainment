@@ -83,7 +83,6 @@
 
 					<div class="cta-row">
 						<a href="/contacts" class="btn primary">Start a project ↗</a>
-						<a href="/projects" class="btn ghost">View my work</a>
 					</div>
 				</div>
 

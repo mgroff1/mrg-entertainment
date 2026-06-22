@@ -1,5 +1,4 @@
 <script>
-	// Import the component we just made in the lib folder
 	import RippleCanvas from '$lib/Water.svelte';
 </script>
 
