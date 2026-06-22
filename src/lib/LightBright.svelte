@@ -110,9 +110,31 @@
 		initGrid();
 		draw();
 
+		const onTouchStart = (e) => {
+			e.preventDefault();
+			handlePointerDown(e);
+		};
+		const onTouchMove = (e) => {
+			e.preventDefault();
+			paint(e);
+		};
+		const onTouchEnd = (e) => {
+			e.preventDefault();
+			handlePointerUp(e);
+		};
+
+		canvas.addEventListener('touchstart', onTouchStart, { passive: false });
+		canvas.addEventListener('touchmove', onTouchMove, { passive: false });
+		canvas.addEventListener('touchend', onTouchEnd, { passive: false });
+		canvas.addEventListener('touchcancel', onTouchEnd, { passive: false });
+
 		return () => {
 			window.removeEventListener('resize', handleResize);
 			cancelAnimationFrame(animationId);
+			canvas.removeEventListener('touchstart', onTouchStart);
+			canvas.removeEventListener('touchmove', onTouchMove);
+			canvas.removeEventListener('touchend', onTouchEnd);
+			canvas.removeEventListener('touchcancel', onTouchEnd);
 		};
 	});
 
@@ -233,9 +255,6 @@
 			onmousemove={paint}
 			onmouseup={handlePointerUp}
 			onmouseleave={handlePointerUp}
-			ontouchstart={handlePointerDown}
-			ontouchmove={paint}
-			ontouchend={handlePointerUp}
 		></canvas>
 	</div>
 </div>

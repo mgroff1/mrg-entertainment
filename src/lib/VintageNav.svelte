@@ -60,7 +60,9 @@
 									>{link.name}</a
 								>
 							{:else}
-								<a href={`${base}${link.path}`} onclick={(e) => navigate(e, link.path)}>{link.name}</a>
+								<a href={`${base}${link.path}`} onclick={(e) => navigate(e, link.path)}
+									>{link.name}</a
+								>
 							{/if}
 						</li>
 					{/each}
@@ -98,7 +100,9 @@
 									>{link.name}</a
 								>
 							{:else}
-								<a href={`${base}${link.path}`} onclick={(e) => navigate(e, link.path)}>{link.name}</a>
+								<a href={`${base}${link.path}`} onclick={(e) => navigate(e, link.path)}
+									>{link.name}</a
+								>
 							{/if}
 						</li>
 					{/each}
@@ -117,7 +121,9 @@
 									>{link.name}</a
 								>
 							{:else}
-								<a href={`${base}${link.path}`} onclick={(e) => navigate(e, link.path)}>{link.name}</a>
+								<a href={`${base}${link.path}`} onclick={(e) => navigate(e, link.path)}
+									>{link.name}</a
+								>
 							{/if}
 						</li>
 					{/each}
@@ -167,7 +173,9 @@
 		text-transform: uppercase;
 		color: #e5e7eb;
 		text-decoration: none;
-		transition: color 0.3s, transform 0.2s;
+		transition:
+			color 0.3s,
+			transform 0.2s;
 	}
 
 	.logo-text:hover {

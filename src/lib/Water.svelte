@@ -157,18 +157,44 @@
 		initGrid();
 		loop();
 
+		const onTouchStart = (e) => {
+			e.preventDefault();
+			handleTouchStart(e);
+		};
+		const onTouchMove = (e) => {
+			e.preventDefault();
+			handleTouchMove(e);
+		};
+		const onTouchEnd = (e) => {
+			e.preventDefault();
+			handleTouchEnd();
+		};
+
+		canvas.addEventListener('touchstart', onTouchStart, { passive: false });
+		canvas.addEventListener('touchmove', onTouchMove, { passive: false });
+		canvas.addEventListener('touchend', onTouchEnd, { passive: false });
+		canvas.addEventListener('touchcancel', onTouchEnd, { passive: false });
+
 		// Cleanup when component is destroyed
 		return () => {
 			window.removeEventListener('resize', handleResize);
 			cancelAnimationFrame(animationFrameId);
+			canvas.removeEventListener('touchstart', onTouchStart);
+			canvas.removeEventListener('touchmove', onTouchMove);
+			canvas.removeEventListener('touchend', onTouchEnd);
+			canvas.removeEventListener('touchcancel', onTouchEnd);
 		};
 	});
 
+	function handleInteraction(clientX, clientY) {
+		const rect = canvas.getBoundingClientRect();
+		mouseX = clientX - rect.left;
+		mouseY = clientY - rect.top;
+	}
+
 	// Mouse Event Handlers
 	function handleMouseMove(e) {
-		const rect = canvas.getBoundingClientRect();
-		mouseX = e.clientX - rect.left;
-		mouseY = e.clientY - rect.top;
+		handleInteraction(e.clientX, e.clientY);
 	}
 
 	function handleMouseDown(e) {
@@ -177,6 +203,24 @@
 	}
 
 	function handleMouseUp() {
+		mouseInteract = false;
+	}
+
+	// Touch Event Handlers
+	function handleTouchStart(e) {
+		mouseInteract = true;
+		if (e.touches && e.touches[0]) {
+			handleInteraction(e.touches[0].clientX, e.touches[0].clientY);
+		}
+	}
+
+	function handleTouchMove(e) {
+		if (e.touches && e.touches[0]) {
+			handleInteraction(e.touches[0].clientX, e.touches[0].clientY);
+		}
+	}
+
+	function handleTouchEnd() {
 		mouseInteract = false;
 	}
 </script>
