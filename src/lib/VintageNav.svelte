@@ -9,11 +9,9 @@
 		isOpen = !isOpen;
 	}
 
-	function navigate(path) {
-		if (path.startsWith('http')) {
-			isOpen = false; // Just close the menu
-			return; // Stop the function here so it doesn't use goto()
-		} else isOpen = false; // Close menu when navigating
+	function navigate(e, path) {
+		e.preventDefault();
+		isOpen = false; // Close menu when navigating
 		goto(path);
 	}
 
