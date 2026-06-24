@@ -8,13 +8,13 @@
 	// Dimensions and Grid
 	let width = 0;
 	let height = 0;
-	const cols = 60;
-	const rows = 30;
+	let cols = 100;
+	let rows = 40;
 	let dots = [];
 
 	// App State
 	let selectedColor = $state('#3b82f6'); // Default to blue
-	let isPoweredOn = $state(true);
+	let isPoweredOn = $state(false);
 	let isScattering = $state(false);
 	let dotScale = $state(0.7); // Default medium
 
@@ -24,7 +24,7 @@
 
 	// Modernized Color Palette mapping to your site's theme
 	const colors = [
-		{ id: 'red', hex: '#ef4444' },
+		{ id: 'red', hex: '#8B0000' },
 		{ id: 'blue', hex: '#3b82f6' },
 		{ id: 'green', hex: '#22c55e' },
 		{ id: 'yellow', hex: '#eab308' },
@@ -68,12 +68,12 @@
 				// Scatter Physics
 				if (isScattering) {
 					// Wander aimlessly
-					dot.ox += (Math.random() - 0.5) * 3;
-					dot.oy += (Math.random() - 0.5) * 3;
+					dot.ox += (Math.random() - 0.5) * 5;
+					dot.oy += (Math.random() - 0.5) * 5;
 				} else {
 					// Magnetic snap back to origin point slowly
-					dot.ox *= 0.9;
-					dot.oy *= 0.9;
+					dot.ox *= 0.99;
+					dot.oy *= 0.99;
 				}
 
 				let x = dot.c * cellW + cellW / 2 + dot.ox;
@@ -85,7 +85,7 @@
 
 				// TRUE GLOW: If powered on, add neon blur to colored pegs
 				if (isPoweredOn && dot.color !== emptyColor) {
-					ctx.shadowBlur = 12;
+					ctx.shadowBlur = 22;
 					ctx.shadowColor = dot.color;
 				} else {
 					ctx.shadowBlur = 0;
@@ -98,11 +98,20 @@
 		}
 
 		const handleResize = () => {
+			const isSmall = window.innerWidth <= 768;
+			let nextCols = isSmall ? 40 : 100;
+			let nextRows = isSmall ? 40 : 40;
 			const parent = canvas.parentElement;
 			width = parent.clientWidth;
 			height = parent.clientHeight;
 			canvas.width = width;
 			canvas.height = height;
+
+			if (nextCols !== cols || nextRows !== rows) {
+				cols = nextCols;
+				rows = nextRows;
+				initGrid();
+			}
 		};
 
 		handleResize();
@@ -265,7 +274,7 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 20px;
-		width: 100%;
+		width: 100vw;
 		padding: 20px;
 		box-sizing: border-box;
 	}
@@ -277,7 +286,7 @@
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
-		max-width: 1000px;
+		max-width: 94vw;
 		background: #111317;
 		padding: 15px 25px;
 		border-radius: 12px;
@@ -368,9 +377,9 @@
 	/* --- Canvas Area --- */
 	.canvas-container {
 		width: 100%;
-		max-width: 1000px;
-		height: 60vh;
-		min-height: 400px;
+		max-width: 97vw;
+		height: 70vh;
+		min-height: 70vh;
 		background: #0b0c0f;
 		border-radius: 12px;
 		border: 1px solid #1f2126;
