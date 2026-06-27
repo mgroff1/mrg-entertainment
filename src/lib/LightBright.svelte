@@ -8,8 +8,8 @@
 	// Dimensions and Grid
 	let width = 0;
 	let height = 0;
-	let cols = 100;
-	let rows = 40;
+	let cols = 70;
+	let rows = 25;
 	let dots = [];
 
 	// App State
@@ -20,6 +20,21 @@
 
 	let isDrawing = false;
 
+	let neonFlicker = 1;
+
+	function updateFlicker() {
+		// 95% of the time, keep it perfectly bright
+		if (Math.random() > 0.95) {
+			// Drop brightness randomly between 50% and 90%
+			neonFlicker = 0.5 + Math.random() * 0.2;
+		} else {
+			// Smoothly return back to full power
+			neonFlicker += (1 - neonFlicker) * 0.2;
+		}
+
+		// Loop this function inside your requestAnimationFrame loop
+	}
+
 	const emptyColor = '#16191e';
 
 	// Modernized Color Palette mapping to your site's theme
@@ -28,29 +43,62 @@
 		{ id: 'blue', hex: '#3b82f6' },
 		{ id: 'green', hex: '#22c55e' },
 		{ id: 'yellow', hex: '#eab308' },
-		{ id: 'orange', hex: '#f97316' },
+		{ id: 'orange', hex: '#FF8C00' },
 		{ id: 'purple', hex: '#a855f7' },
 		{ id: 'white', hex: '#ffffff' },
 		{ id: 'erase', hex: emptyColor }
 	];
 
-	onMount(() => {
-		ctx = canvas.getContext('2d', { alpha: false });
-
-		function initGrid() {
-			dots = [];
-			for (let r = 0; r < rows; r++) {
-				for (let c = 0; c < cols; c++) {
-					dots.push({
-						r,
-						c,
-						color: emptyColor,
-						ox: 0,
-						oy: 0 // offset X and Y for the scatter effect
-					});
-				}
+	function initGrid() {
+		dots = [];
+		for (let r = 0; r < rows; r++) {
+			for (let c = 0; c < cols; c++) {
+				dots.push({
+					r,
+					c,
+					color: emptyColor,
+					ox: 0,
+					oy: 0 // offset X and Y for the scatter effect
+				});
 			}
 		}
+	}
+
+	function handleResize() {
+		if (!canvas) return;
+		const isSmall = window.innerWidth <= 768;
+
+		let nextCols = 70;
+		let nextRows = 25;
+
+		if (isSmall) {
+			nextCols = 40;
+			nextRows = 40;
+		} else if (dotScale === 0.4) {
+			nextCols = 200;
+			nextRows = 80;
+		}
+
+		const parent = canvas.parentElement;
+		width = parent.clientWidth;
+		height = parent.clientHeight;
+		canvas.width = width;
+		canvas.height = height;
+
+		if (nextCols !== cols || nextRows !== rows) {
+			cols = nextCols;
+			rows = nextRows;
+			initGrid();
+		}
+	}
+
+	function setDotScale(scale) {
+		dotScale = scale;
+		handleResize();
+	}
+
+	onMount(() => {
+		ctx = canvas.getContext('2d', { alpha: false });
 
 		function draw() {
 			// Clear background
@@ -85,34 +133,28 @@
 
 				// TRUE GLOW: If powered on, add neon blur to colored pegs
 				if (isPoweredOn && dot.color !== emptyColor) {
-					ctx.shadowBlur = 22;
+					// ... your 4-layer bright glowing code from before ...
+					ctx.fillStyle = dot.color;
 					ctx.shadowColor = dot.color;
+					ctx.shadowBlur = 10 * neonFlicker;
+					ctx.fillStyle = dot.color;
+					ctx.fill();
 				} else {
+					// Powered off: Kill the glow and apply a 20% opacity alpha suffix
 					ctx.shadowBlur = 0;
-				}
 
+					if (dot.color === '#ffffff') {
+						ctx.fillStyle = '#ffffff22'; // Dims white slightly more so it's greyish
+					} else {
+						ctx.fillStyle = `${dot.color}33`; // Appends '33' for ~20% opacity
+					}
+				}
 				ctx.fill();
 			}
-
+			// requestAnimationFrame(updateFlicker);
+			updateFlicker();
 			animationId = requestAnimationFrame(draw);
 		}
-
-		const handleResize = () => {
-			const isSmall = window.innerWidth <= 768;
-			let nextCols = isSmall ? 40 : 100;
-			let nextRows = isSmall ? 40 : 40;
-			const parent = canvas.parentElement;
-			width = parent.clientWidth;
-			height = parent.clientHeight;
-			canvas.width = width;
-			canvas.height = height;
-
-			if (nextCols !== cols || nextRows !== rows) {
-				cols = nextCols;
-				rows = nextRows;
-				initGrid();
-			}
-		};
 
 		handleResize();
 		window.addEventListener('resize', handleResize);
@@ -244,13 +286,13 @@
 
 		<!-- Size Controls -->
 		<div class="controls-group size-controls">
-			<button class="util-btn bulb" class:active={dotScale === 0.4} onclick={() => (dotScale = 0.4)}
+			<button class="util-btn bulb" class:active={dotScale === 0.4} onclick={() => setDotScale(0.4)}
 				>S</button
 			>
-			<button class="util-btn bulb" class:active={dotScale === 0.7} onclick={() => (dotScale = 0.7)}
+			<button class="util-btn bulb" class:active={dotScale === 0.7} onclick={() => setDotScale(0.7)}
 				>M</button
 			>
-			<button class="util-btn bulb" class:active={dotScale === 1.0} onclick={() => (dotScale = 1.0)}
+			<button class="util-btn bulb" class:active={dotScale === 1.0} onclick={() => setDotScale(1.0)}
 				>L</button
 			>
 		</div>
