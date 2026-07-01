@@ -13,34 +13,37 @@
 
 	onMount(() => {
 		// 1. Setup Canvas Context
-		const c = canvas.getContext('2d', { alpha: false }); // alpha: false optimizes rendering for solid backgrounds
+		const c = canvas.getContext('2d', { alpha: false });
 
-		// 2. Physics Constants (from your original code!)
+		// 2. Physics Constants
 		const disruption = 0.009;
 		const cushion = 0.96;
 		const initialHeight = 0.57;
 		const gridSize = 200;
-
 		let level = 0;
 		let cells = [];
 		let cellWidth = 0;
 		let cellHeight = 0;
 
-		// 3. Pre-calculate Custom Brand Colors
-		// Instead of pure blue, we transition from your dark theme (#0b0c0f) to bright blue (#3b82f6)
+		// 3. Pre-calculate Custom Brand Colors with a Whitewater Crest
 		const colors = [];
-		for (let i = -10; i < 255; i++) {
-			let ratio = Math.max(0, Math.min(1, i / 255));
+		for (let i = 0; i < 256; i++) {
+			let ratio = i / 255;
 
-			// We are adding an exponent here (ratio * ratio).
-			// This keeps the water darker for longer, but makes the extreme peaks shoot up in brightness!
-			let intenseRatio = Math.pow(ratio, 2.5);
-
-			// Interpolate from dark (#0b0c0f) to a bright glowing neon cyan/white (180, 240, 255)
-			let r = Math.floor(11 + (59 - 11) * intenseRatio);
-			let g = Math.floor(12 + (133 - 12) * intenseRatio);
-			let b = Math.floor(15 + (255 - 15) * intenseRatio);
-
+			let r, g, b;
+			if (ratio < 0.5) {
+				// First 50%: Dark board background (#0b0c0f) expanding to clean theme blue (#3b82f6)
+				let normRatio = Math.pow(ratio / 0.5, 1.5);
+				r = Math.floor(11 + (59 - 11) * normRatio);
+				g = Math.floor(12 + (130 - 12) * normRatio);
+				b = Math.floor(15 + (246 - 15) * normRatio);
+			} else {
+				// Top 50%: Blue exploding up into bright neon cyan and striking pure white (#ffffff)
+				let peakRatio = (ratio - 0.5) / 0.5;
+				r = Math.floor(59 + (255 - 59) * peakRatio);
+				g = Math.floor(130 + (255 - 130) * peakRatio);
+				b = Math.floor(246 + (255 - 246) * peakRatio);
+			}
 			colors.push(`rgb(${r}, ${g}, ${b})`);
 		}
 
@@ -49,12 +52,8 @@
 			cells = [];
 			for (let i = 0; i < gridSize; i++) {
 				for (let j = 0; j < gridSize; j++) {
-					// Drop a "pebble" right in the dead center on load
 					let isCenter = i === Math.floor(gridSize / 2) && j === Math.floor(gridSize / 2);
-					cells.push({
-						height: isCenter ? 2 : initialHeight,
-						velocity: 0
-					});
+					cells.push({ height: isCenter ? 2 : initialHeight, velocity: 0 });
 				}
 			}
 		}
@@ -62,7 +61,6 @@
 		// 5. Calculate Physics (2D Wave Equation)
 		function updatePhysics() {
 			let avgHeight = 0;
-
 			for (let i = 0; i < gridSize; i++) {
 				for (let j = 0; j < gridSize; j++) {
 					let cell = cells[i + j * gridSize];
@@ -71,25 +69,21 @@
 					for (let di = -1; di <= 1; di++) {
 						for (let dj = -1; dj <= 1; dj++) {
 							if (di !== 0 || dj !== 0) {
-								// Modulo (%) allows the waves to wrap around the edges seamlessly
 								let ni = (i + di + gridSize) % gridSize;
 								let nj = (j + dj + gridSize) % gridSize;
 								let next = cells[ni + nj * gridSize];
-
-								// Pull cell towards its neighbors' heights
 								cell.velocity += (disruption + 0.001) * (next.height - cell.height);
 							}
 						}
 					}
 
-					// Apply velocity and cushion (friction)
+					// Apply velocity and cushion
 					cell.height += cell.velocity;
 					cell.height += level;
 					cell.velocity *= cushion;
 					avgHeight += cell.height;
 				}
 			}
-
 			avgHeight /= gridSize * gridSize;
 			level = initialHeight - avgHeight / 1.3;
 		}
@@ -100,10 +94,12 @@
 				let i = Math.floor((gridSize * mouseX) / width);
 				let j = Math.floor((gridSize * mouseY) / height);
 
-				// Safety check to ensure we are inside the grid
 				if (i >= 0 && i < gridSize && j >= 0 && j < gridSize) {
 					let cell = cells[i + j * gridSize];
-					cell.height = 5.5; // Disturbs the water
+
+					// FIX: Drop the water column to 0.0 (absolute vacuum)
+					// Math.abs(0.0 - 0.57) = 0.57 energy, which instantly triggers pure white!
+					cell.height = 0.0;
 					cell.velocity = 0;
 				}
 			}
@@ -117,13 +113,19 @@
 					let x = i * cellWidth;
 					let y = j * cellHeight;
 
-					// Map the height to an index in our pre-calculated colors array
-					let colorIndex = Math.floor(cell.height * 255);
-					// Clamp index between 0 and 264 to prevent array out-of-bounds errors
-					colorIndex = Math.max(0, Math.min(colors.length - 1, colorIndex));
+					// FIX: Measure the ABSOLUTE energy distance from rest position
+					// This treats underwater drops and upward crests with identical glow power!
+					let waveEnergy = Math.abs(cell.height - initialHeight);
+
+					// Boost the multiplier so the expanding ripples easily climb into the white zone
+					let colorIndex = Math.floor(waveEnergy * 900);
+
+					// Clamp safely between 0 (resting water) and 255 (dazzling white wake)
+					colorIndex = Math.max(0, Math.min(255, colorIndex));
 
 					c.fillStyle = colors[colorIndex];
-					// We add +1.5 to width/height to overlap the boxes slightly and hide grid lines
+
+					// Overlap slightly to prevent thin pixel grid dividers
 					c.fillRect(x, y, cellWidth + 1.1, cellHeight + 2.5);
 				}
 			}
@@ -139,19 +141,15 @@
 
 		// 9. Handle Window Resizing smoothly
 		const handleResize = () => {
-			// Look at the parent element's dimensions instead of the whole window
 			const parent = canvas.parentElement;
 			width = parent.clientWidth;
 			height = parent.clientHeight;
-
 			canvas.width = width;
 			canvas.height = height;
-
 			cellWidth = width / gridSize;
 			cellHeight = height / gridSize;
 		};
 
-		// Kick everything off!
 		handleResize();
 		window.addEventListener('resize', handleResize);
 		initGrid();
@@ -161,10 +159,12 @@
 			e.preventDefault();
 			handleTouchStart(e);
 		};
+
 		const onTouchMove = (e) => {
 			e.preventDefault();
-			handleTouchMove(e);
+			paint(e); // Keeping your touch move binding intact
 		};
+
 		const onTouchEnd = (e) => {
 			e.preventDefault();
 			handleTouchEnd();
@@ -175,7 +175,6 @@
 		canvas.addEventListener('touchend', onTouchEnd, { passive: false });
 		canvas.addEventListener('touchcancel', onTouchEnd, { passive: false });
 
-		// Cleanup when component is destroyed
 		return () => {
 			window.removeEventListener('resize', handleResize);
 			cancelAnimationFrame(animationFrameId);
@@ -199,7 +198,7 @@
 
 	function handleMouseDown(e) {
 		mouseInteract = true;
-		handleMouseMove(e); // Trigger immediate splash
+		handleMouseMove(e);
 	}
 
 	function handleMouseUp() {

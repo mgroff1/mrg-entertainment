@@ -1,3 +1,4 @@
+<!-- Inside page.svelte -->
 <script>
   import Carousel from '$lib/Carousel.svelte';
   
@@ -11,33 +12,39 @@
   const slides = [
     {
       image: bgImageOne,
-      title: "Accretion: Planetary Sandbox",
-      description: "A physics‑driven space sandbox where you build solar systems, collide planets, tweak gravity, and watch worlds form in real time. Accretion turns astrophysics into a creative playground."
+      title: "Accretion: Planetary Sandbox ",
+      description: "A physics‑driven space sandbox where you build solar systems, collide planets, tweak gravity, and watch worlds form in real time. Accretion turns astrophysics into a creative playground.",
+      link: "https://play.google.com/store/apps/details?id=com.mrg.planetary_sandbox"
     },
     {
       image: celestial_realm,
       title: "Celestial Realm: A Tarot Guide",
-      description: "A serene, cosmic‑themed tarot reference that helps you learn, explore, and understand every card with clarity and ease."
+      description: "A serene, cosmic‑themed tarot reference that helps you learn, explore, and understand every card with clarity and ease.",
+      link: "https://play.google.com/store/apps/details?id=com.mick.tarotreading"
     },
     {
       image: cipher,
       title: "Cipher: A Guide, A Reading, A Dream",
-      description: "A mystical all‑in‑one tool offering tarot readings, daily guidance, and dream interpretation in a beautifully intuitive experience."
+      description: "A mystical all‑in‑one tool offering tarot readings, daily guidance, and dream interpretation in a beautifully intuitive experience.",
+      link: "https://play.google.com/store/apps/details?id=com.mrg.innercouncil"
     },
     {
       image: roommateRep,
       title: "Roommate Rep: A Roommate Reputation Tracker",
-      description: "A simple, trustworthy way to build a rental reputation, verify yourself, and show landlords or roommates a clean, credible profile."
+      description: "A simple, trustworthy way to build a rental reputation, verify yourself, and show landlords or roommates a clean, credible profile.",
+      link: "https://play.google.com/store/apps/details?id=com.roomaterep.roomate_rep"
     },
     {
       image: dreamIt,
       title: "Dream It: A Dream Journal and Interpretation App",
-      description: "A modern dream journal that tracks symbols, emotions, themes, and patterns, helping you understand your subconscious over time."
+      description: "A modern dream journal that tracks symbols, emotions, themes, and patterns, helping you understand your subconscious over time.",
+      link: "https://play.google.com/store/apps/details?id=com.dreamitapp.dreamit"
     },
     {
       image: icon,
       title: "Custom Scenarios",
-      description: "Build your own solar systems and test physics."
+      description: "Build your own solar systems and test physics.",
+      link: "https://google.com"
     }
   ];
 </script>
@@ -45,7 +52,6 @@
 <div class="carousel-container">
   <Carousel items={slides} />
 </div>
-
 <style>
   .carousel-container {
     display: flex;

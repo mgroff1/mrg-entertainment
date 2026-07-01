@@ -3,6 +3,7 @@
 		image: string;
 		title: string;
 		description: string;
+		link?: string; // 1. Added optional link property
 	};
 
 	// Svelte 5 Props Rune
@@ -27,7 +28,16 @@
 		{#each items as item, i}
 			<div class="slide" class:active={i === current}>
 				<div class="content">
-					<h2>{item.title}</h2>
+					<!-- 2. Updated Title Section to support links -->
+					<h2>
+						{#if item.link}
+							<a href={item.link} target="_blank" rel="noopener noreferrer" class="title-link">
+								{item.title}
+							</a>
+						{:else}
+							{item.title}
+						{/if}
+					</h2>
 					<p>{item.description}</p>
 				</div>
 				<div class="image-wrapper">
@@ -77,6 +87,18 @@
 	.slide.active {
 		opacity: 1;
 		visibility: visible;
+	}
+
+	.title-link {
+		color: inherit;
+		text-decoration: underline;
+		text-decoration-color: rgba(255, 255, 255, 0.4);
+		transition: text-decoration-color 0.2s, color 0.2s;
+	}
+
+	.title-link:hover {
+		color: #38bdf8; /* Optional: subtle blue tint on hover */
+		text-decoration-color: #38bdf8;
 	}
 
 	.content {
