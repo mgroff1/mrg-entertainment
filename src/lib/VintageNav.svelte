@@ -182,10 +182,11 @@
 		align-items: center;
 		text-decoration: none;
 		transition: transform 0.2s ease;
+
 	}
 
 	.logo-link:hover {
-		transform: scale(1.02);
+		transform: scale(1.01);
 	}
 
 	.logo-image {
@@ -194,7 +195,7 @@
 		width: auto;
 		object-fit: contain;
 		padding-top:5px;
-		filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
+	
 	}
 
 	@media (max-width: 600px) {

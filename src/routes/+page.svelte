@@ -196,6 +196,8 @@
 		left: 0px;
 		top: 0px;
 		height: 400px;
+		filter: drop-shadow(50px 50px 40px 50px rgb(0, 0, 0));
+		box-shadow: 20px 20px 20px 20px rgb(0, 0, 0);
 	}
 
 	.apps{

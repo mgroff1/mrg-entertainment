@@ -129,6 +129,24 @@
 					c.fillRect(x, y, cellWidth + 1.1, cellHeight + 2.5);
 				}
 			}
+
+			if (mouseInteract) {
+				const glowRadius = Math.max(10, Math.min(cellWidth, cellHeight) * 4.5);
+				const gradient = c.createRadialGradient(
+					mouseX,
+					mouseY,
+					0,
+					mouseX,
+					mouseY,
+					glowRadius
+				);
+				gradient.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+				gradient.addColorStop(0.35, 'rgba(240, 250, 255, 0.45)');
+				gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+				c.fillStyle = gradient;
+				c.fillRect(mouseX - glowRadius, mouseY - glowRadius, glowRadius * 2, glowRadius * 2);
+			}
 		}
 
 		// 8. Main Render Loop
@@ -162,7 +180,7 @@
 
 		const onTouchMove = (e) => {
 			e.preventDefault();
-			paint(e); // Keeping your touch move binding intact
+			handleTouchMove(e);
 		};
 
 		const onTouchEnd = (e) => {
