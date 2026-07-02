@@ -44,8 +44,7 @@
 		<!-- Brand Logo/Text -->
 		<div class="logo-wrapper">
 			<a href={`${base}/`} onclick={(e) => navigate(e, '/')} class="logo-text">
-				<span class="full-text">MRG Entertainment</span>
-				<span class="short-text">MRG</span>
+			
 			</a>
 		</div>
 

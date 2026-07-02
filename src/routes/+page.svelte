@@ -1,12 +1,14 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
+	
 </script>
 
 <div class="home-container">
 	<section class="hero">
 		<div class="inner">
-			<h1>Building Apps with Purpose</h1>
+		<h1 class="mrg">MRG Entertainment</h1>
+			<h1 class="apps">Building Apps with Purpose</h1>
 			<p class="tagline">
 				Clean, intuitive experiences crafted with intention — from real‑world tools to creative
 				sandboxes.
@@ -66,7 +68,8 @@
 	</section>
 </div>
 
-<style>
+<style lang="css">
+	
 	.home-container {
 		width: 100%;
 	}
@@ -83,6 +86,7 @@
 		margin-bottom: 12px;
 		color: #fff;
 	}
+
 
 	.tagline {
 		font-size: 1.2rem;
@@ -169,5 +173,19 @@
 
 	.link:hover {
 		text-decoration: underline;
+	}
+
+	.mrg {
+		 font-family: "Segoe UI", "SysUI-Geometric", system-ui, sans-serif !important;
+		 underline: dash !important;
+		padding:0px !important;
+		margin-top:-40px !important;
+		margin-bottom: 100px !important;
+		font-size: 4rem !important;
+
+	}
+
+	.apps{
+		font-size: 1.5rem !important;
 	}
 </style>
