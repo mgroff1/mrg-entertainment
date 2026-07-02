@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
 	import { slide } from 'svelte/transition';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
+	import mrgLogo from '$lib/images/mrg.png';
 
 	// Svelte 5 state for the menu toggle
 	let isOpen = $state(false);
@@ -10,7 +11,7 @@
 		isOpen = !isOpen;
 	}
 
-	function navigate(e, path) {
+	function navigate(e: MouseEvent, path: string) {
 		e.preventDefault();
 		isOpen = false; // Close menu when navigating
 		goto(`${base}${path}`);
@@ -43,8 +44,14 @@
 	<div class="nav-container">
 		<!-- Brand Logo/Text -->
 		<div class="logo-wrapper">
-			<a href={`${base}/`} onclick={(e) => navigate(e, '/')} class="logo-text">
-			
+			<a href={`${base}/`} title="Home" onclick={(e) => navigate(e, '/')} class="logo-link">
+				<img src={mrgLogo} alt="MRG Entertainment" class="logo-image" />
+			</a>
+		</div>
+
+		<div class="logo-wrapper logo-wrapper-right">
+			<a href={`${base}/`} title="Home" onclick={(e) => navigate(e, '/')} class="logo-link">
+				<img src={mrgLogo} alt="MRG Entertainment" class="logo-image" />
 			</a>
 		</div>
 
@@ -158,44 +165,41 @@
 	/* Logo Brand Styles */
 	.logo-wrapper {
 		position: absolute;
-		left: 20px;
+		left: 50px;
 		height: 100%;
 		display: flex;
 		align-items: center;
 		z-index: 105;
 	}
 
-	.logo-text {
-		font-size: 1.1rem;
-		font-weight: 700;
-		letter-spacing: 0.05em;
-		text-transform: uppercase;
-		color: #e5e7eb;
-		text-decoration: none;
-		transition:
-			color 0.3s,
-			transform 0.2s;
+	.logo-wrapper-right {
+		left: auto;
+		right: 50px;
 	}
 
-	.logo-text:hover {
-		color: #3b82f6;
+	.logo-link {
+		display: inline-flex;
+		align-items: center;
+		text-decoration: none;
+		transition: transform 0.2s ease;
+	}
+
+	.logo-link:hover {
 		transform: scale(1.02);
 	}
 
-	.logo-text .short-text {
-		display: inline;
+	.logo-image {
+		display: block;
+		height: 50px;
+		width: auto;
+		object-fit: contain;
+		padding-top:5px;
+		filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
 	}
 
-	.logo-text .full-text {
-		display: none;
-	}
-
-	@media (min-width: 600px) {
-		.logo-text .short-text {
-			display: none;
-		}
-		.logo-text .full-text {
-			display: inline;
+	@media (max-width: 600px) {
+		.logo-image {
+			height: 46px;
 		}
 	}
 

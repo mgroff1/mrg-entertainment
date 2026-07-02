@@ -1,13 +1,19 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
-	
+	import mrgLogo from '$lib/images/mrg1.png';
 </script>
 
 <div class="home-container">
 	<section class="hero">
 		<div class="inner">
-		<h1 class="mrg">MRG Entertainment</h1>
+
+		<div class="logo-wrapper">
+			<a href={`${base}/`} title="Home" onclick={(e) => navigate(e, '/')} class="logo-link">
+				<img src={mrgLogo} alt="MRG Entertainment" class="logo-image" />
+			</a>
+		</div>
+
 			<h1 class="apps">Building Apps with Purpose</h1>
 			<p class="tagline">
 				Clean, intuitive experiences crafted with intention — from real‑world tools to creative
@@ -75,7 +81,7 @@
 	}
 
 	.hero {
-		padding: 100px 20px;
+		padding: 20px 20px;
 		text-align: center;
 		background: radial-gradient(circle at top, #1a1d24, #0b0c0f);
 	}
@@ -177,12 +183,19 @@
 
 	.mrg {
 		 font-family: "Segoe UI", "SysUI-Geometric", system-ui, sans-serif !important;
-		 underline: dash !important;
+		 underline:  !important;
 		padding:0px !important;
 		margin-top:-40px !important;
 		margin-bottom: 100px !important;
 		font-size: 4rem !important;
 
+	}
+
+	.logo-image {
+		position: relative;
+		left: 0px;
+		top: 0px;
+		height: 400px;
 	}
 
 	.apps{
