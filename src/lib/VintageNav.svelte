@@ -274,9 +274,11 @@
 	.pie-button:hover .hoop {
 		border-top-color: #60a5fa;
 		border-bottom-color: #60a5fa;
+		transform: rotate(0deg) scale(1.1);
 	}
 	.pie-button:hover .pie-container {
 		border-color: #9ca3af;
+		transform: rotate(0deg) scale(1.1);
 	}
 
 	.pie-button.open .hoop {
@@ -285,13 +287,17 @@
 		border-right-color: #3b82f6;
 		border-top-color: #1a1d24;
 		border-bottom-color: #1a1d24;
+		
 	}
 	.pie-button.open .pie-container {
 		transform: rotate(360deg) scale(0.85);
 		border-color: #3b82f6;
+		
 	}
 	.pie-button.open .pie-icon {
+		
 		color: #3b82f6;
+		
 	}
 
 	/* Dropdown Lists */
