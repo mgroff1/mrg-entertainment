@@ -72,8 +72,6 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
-		box-shadow: 0px 0px 10px 5px rgb(0, 0, 0);
-		filter: drop-shadow(0px 0px 0px 0px rgb(0, 0, 0));
 	}
 
 	.slide {
@@ -86,8 +84,6 @@
 			visibility 0.6s ease;
 		display: flex;
 		flex-direction: row;
-				box-shadow: 0px 0px 10px 5px rgb(0, 0, 0);
-		filter: drop-shadow(0px 0px 0px 0px rgb(0, 0, 0));
 	}
 
 	.slide.active {
