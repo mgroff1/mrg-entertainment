@@ -44,7 +44,7 @@
 		{ id: 'green', hex: '#22c55e' },
 		{ id: 'yellow', hex: '#ffea00' }, // Laser Yellow (shifted away from orange)
 		{ id: 'orange', hex: '#ff5500' },
-		{ id: 'purple', hex: '#6366f1' },
+		{ id: 'purple', hex: '#8b5cf6' },
 		{ id: 'white', hex: '#ffffff' },
 		{ id: 'erase', hex: emptyColor }
 	];
