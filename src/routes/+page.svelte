@@ -10,7 +10,7 @@
 
 		<div class="logo-wrapper">
 			<a href={`${base}/`} title="Home" class="logo-link">
-				<img src={mrgLogo} alt="MRG Entertainment" class="logo-image" />
+				<img src={`${base}/mrg1.png`} alt="MRG Entertainment" class="logo-image" />
 			</a>
 		</div>
 
@@ -196,6 +196,7 @@
 		height: 400px;
 		filter: drop-shadow(50px 50px 40px 50px rgb(0, 0, 0));
 		box-shadow: 20px 20px 20px 20px rgb(0, 0, 0);
+		color: transparent;
 	}
 
 	.apps{

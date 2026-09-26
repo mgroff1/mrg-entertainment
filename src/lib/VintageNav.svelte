@@ -45,13 +45,13 @@
 		<!-- Brand Logo/Text -->
 		<div class="logo-wrapper">
 			<a href={`${base}/`} title="Home" onclick={(e) => navigate(e, '/')} class="logo-link">
-				<img src={mrgLogo} alt="MRG Entertainment" class="logo-image" />
+				<img src={`${base}/mrg.png`} alt="MRG Entertainment" class="logo-image" />
 			</a>
 		</div>
 
 		<div class="logo-wrapper logo-wrapper-right">
 			<a href={`${base}/`} title="Home" onclick={(e) => navigate(e, '/')} class="logo-link">
-				<img src={mrgLogo} alt="MRG Entertainment" class="logo-image" />
+				<img src={`${base}/mrg.png`} alt="MRG Entertainment" class="logo-image" />
 			</a>
 		</div>
 
@@ -195,7 +195,7 @@
 		width: auto;
 		object-fit: contain;
 		padding-top:5px;
-	
+		color: transparent;
 	}
 
 	@media (max-width: 600px) {
