@@ -40,7 +40,7 @@
 	// Modernized Color Palette mapping to your site's theme
 	const colors = [
 		{ id: 'red', hex: '#8B0000' },
-		{ id: 'blue', hex: '#3b82f6' },
+		{ id: 'blue', hex: '#0047ab' },
 		{ id: 'green', hex: '#22c55e' },
 		{ id: 'yellow', hex: '#ffea00' }, // Laser Yellow (shifted away from orange)
 		{ id: 'orange', hex: '#ff5500' },
