@@ -9,7 +9,7 @@
 		<div class="inner">
 
 		<div class="logo-wrapper">
-			<a href={`${base}/`} title="Home" onclick={(e) => navigate(e, '/')} class="logo-link">
+			<a href={`${base}/`} title="Home" class="logo-link">
 				<img src={mrgLogo} alt="MRG Entertainment" class="logo-image" />
 			</a>
 		</div>
@@ -182,13 +182,11 @@
 	}
 
 	.mrg {
-		 font-family: "Segoe UI", "SysUI-Geometric", system-ui, sans-serif !important;
-		 underline:  !important;
-		padding:0px !important;
-		margin-top:-40px !important;
+		font-family: "Segoe UI", "SysUI-Geometric", system-ui, sans-serif !important;
+		padding: 0px !important;
+		margin-top: -40px !important;
 		margin-bottom: 100px !important;
 		font-size: 4rem !important;
-
 	}
 
 	.logo-image {
